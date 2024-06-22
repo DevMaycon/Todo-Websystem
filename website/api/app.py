@@ -5,6 +5,7 @@ from os import getcwd
 app = Flask(__name__)
 path = getcwd()
 
+# API useful functions
 def database_read():
     with open(path + '/database.json') as database_file:
         data = load(database_file)
@@ -15,9 +16,16 @@ def database_write(data):
         dump(data, database_file, indent=4)
     return 'successful data!'
 
+def message(code: int = 200, message: str = "successful", custom_data: dict = {}):
+    if not custom_data:
+        return {'status': code, 'message': message}
+    else:
+        return {'status': code, 'message': message, "data": custom_data}
+
+# API Routes
 @app.route('/', methods=['GET'])
 def index_connection():
-    return jsonify({'status': '200', 'message': 'Nice, API is Online!'})
+    return jsonify(message(message='Nice, API is Online!'))
 
 @app.route('/getall', methods=['GET'])
 def get_all_todo():
@@ -34,15 +42,19 @@ def set_new_todo():
         "description": description,
         "autor": autor
     }
-    data[todo_data['id']+1] = todo_data
+    data[data['last_id']+1] = todo_data
     data["last_id"] += 1
     database_write(data=data)
-    return jsonify({"message": f"{str(title)} added successfully!", "data": todo_data})
+    return jsonify(message(message=f"{str(title)} added successfully!", custom_data=todo_data))
 
-@app.route('/<id:int>', methods=['GET'])
+@app.route('/search/<int:id>', methods=['GET'])
 def get_todo_by_id(id: int):
-    todo_data = database_read()[id]
-    return jsonify(todo_data)
+    try:
+        todo_data = database_read()[str(id)]
+        return jsonify(todo_data)
+    except KeyError as error:
+        print(error)
+        return jsonify(message(404, "Todo not found or not exists.",))
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(debug=False, port=9000)
