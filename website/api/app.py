@@ -7,7 +7,7 @@ path = getcwd()
 
 def database_read():
     with open(path + '/database.json') as database_file:
-        data = load(database_file)["todo"]
+        data = load(database_file)
     return data
 
 def database_write(data):
