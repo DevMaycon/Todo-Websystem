@@ -10,7 +10,7 @@ def index_connection():
 
 @app.route('/getall')
 def get_all_todo():
-    with open('database') as database_file:
+    with open('database.json') as database_file:
         content = load(database_file)
     return jsonify(database_file.keys())
 
