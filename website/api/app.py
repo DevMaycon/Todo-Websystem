@@ -23,7 +23,7 @@ def index_connection():
 def get_all_todo():
     return jsonify(database_read().keys())
 
-@app.route('newtodo', methods=['POST'])
+@app.route('/newtodo', methods=['POST'])
 def set_new_todo():
     # logic to add a new todo to database
     title, description, autor = (request.json["title"], request.json["description"], request.json["autor"])
