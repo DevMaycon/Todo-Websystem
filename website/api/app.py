@@ -34,8 +34,8 @@ def set_new_todo():
         "description": description,
         "autor": autor
     }
-    data["last_id"] += 1
     data[todo_data['id']+1] = todo_data
+    data["last_id"] += 1
     database_write(data=data)
     return jsonify({"message": f"{str(title)} added successfully!", "data": todo_data})
 
