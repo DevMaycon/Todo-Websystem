@@ -27,13 +27,13 @@ def get_all_todo():
 def set_new_todo():
     # logic to add a new todo to database
     title, description, autor = (request.json["title"], request.json["description"], request.json["autor"])
+    data = database_read()
     todo_data = {
         "id": data["todo"][-1]["id"] + 1,
         "title": title,
         "description": description,
         "autor": autor
     }
-    data = database_read()
     data[todo_data['id']+1] = todo_data
     return jsonify({"message": f"{str(title)} added successfully!", "data": todo_data})
 
