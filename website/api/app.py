@@ -39,5 +39,10 @@ def set_new_todo():
     database_write(data=data)
     return jsonify({"message": f"{str(title)} added successfully!", "data": todo_data})
 
+@app.route('/<id:int>', methods=['GET'])
+def get_todo_by_id(id: int):
+    todo_data = database_read()[id]
+    return jsonify(todo_data)
+
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
