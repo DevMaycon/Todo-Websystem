@@ -1,8 +1,10 @@
 from flask import Flask
 from flask import jsonify
 from json import load, dump
+from os import getcwd
 
 app = Flask(__name__)
+path = getcwd()
 
 @app.route('/')
 def index_connection():
@@ -10,7 +12,7 @@ def index_connection():
 
 @app.route('/getall')
 def get_all_todo():
-    with open('database.json') as database_file:
+    with open(path + '/database.json') as database_file:
         content = load(database_file)
     return jsonify(database_file.keys())
 
