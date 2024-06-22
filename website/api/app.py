@@ -21,7 +21,7 @@ def index_connection():
 
 @app.route('/getall', methods=['GET'])
 def get_all_todo():
-    return jsonify(database_read().keys())
+    return jsonify([i for i in database_read().keys()])
 
 @app.route('/newtodo', methods=['POST'])
 def set_new_todo():
