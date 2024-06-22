@@ -36,6 +36,7 @@ def set_new_todo():
     }
     data["last_id"] += 1
     data[todo_data['id']+1] = todo_data
+    database_write(data=data)
     return jsonify({"message": f"{str(title)} added successfully!", "data": todo_data})
 
 if __name__ == '__main__':
