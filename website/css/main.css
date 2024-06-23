@@ -39,27 +39,37 @@ html, body{
     font-size: 2vh;
 }
 
-.description {
-    font-size: 1.3vh;
+.todo-info-title {
+    font-size: 2vh;
+    font-weight: bolder;
+}
+
+.todo-info-autor {
+    font-size: 1.25vh;
+}
+
+.todo-info-description {
+    font-size: 1.5vh;
+    font-weight: 600;
 }
 
 .checkbox {
     display: flex;
     padding: 0px;
     position: relative;
-    background-color: rgb(43, 0, 98);
-    width: 5.5vh;
-    height: 3.5vh;
+    /*background-color: rgb(43, 0, 98);*/
+    background-color: black;
+    width: 2.5vh;
+    height: auto;
     cursor: crosshair;
-    border-radius: 50px;
+    border-radius: 5px;
     text-align: center;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    box-shadow: 0px 1px 10px rgb(42, 98, 12);
+    flex-direction: column;
+    box-shadow: 0px 1px 10px rgb(46, 10, 81);
 }
 
 .checkbox img {
-    height: 100%;
+    width: 100%;
 }
