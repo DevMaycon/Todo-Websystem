@@ -8,3 +8,12 @@ function checkItem(item) {
         checkbox.style.opacity = "1";
     }
 }
+
+async function todoUpdate() {
+    console.log('run')
+    let request = new XMLHttpRequest;
+    request.open("GET", "https://devmaycon.pythonanywhere.com/getall")
+    let response = await request.send()
+    console.log(response)
+    return response
+}
