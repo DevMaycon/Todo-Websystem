@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request
 from json import load, dump
 from os import getcwd
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app=app)
 path = getcwd()
 
 # API useful functions
